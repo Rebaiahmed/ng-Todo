@@ -1,0 +1,36 @@
+<section class="container">
+<header class="header">
+
+<h1 class="text-center">Todos </h1>
+<input class="new-todo" placeholder="What Needs to be Done ?" autofocus=""
+[(ngModel)]="newTodo.title" (keyup.enter) ="addTodo()"> 
+</header>
+
+
+<section class="main" *ngIf="todos.length >0">
+<ul class="list-group">
+
+<li *ngFor="let todo of todos" [class.completed]="todo.completed" class="list-group-item">
+    <ul class="todo-list">
+<div class="view">
+    <input class="toggle" class="form-control" type="checkbox" (clicked)="toggleTodoComplete(todo)" 
+    [checked]="todo.complete">
+    <h3> {{ todo.title }} </h3>
+
+    <button class="glyphicon glyphicon-remove" (click)="removeTodo(todo)"> </button>
+</div>    
+    </ul>
+
+
+</li>    
+
+</ul>
+
+</section>
+
+
+
+<footer class="footer" *ngIf="todos.length >0">
+   <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
+</footer>
+</section>    
